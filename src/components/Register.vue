@@ -53,7 +53,7 @@ export default {
       email: "",
       password: "",
       password_confirmation: "",
-      is_admin: null
+      is_admin: 0
     };
   },
   methods: {
@@ -67,7 +67,7 @@ export default {
         let url = "http://localhost:3000/register";
         if (this.is_admin != null || this.is_admin == 1)
           url = "http://localhost:3000/register-admin";
-        this.$http
+        this.axios
           .post(url, {
             name: this.name,
             email: this.email,

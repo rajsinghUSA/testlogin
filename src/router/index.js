@@ -5,6 +5,9 @@ import Login from "@/components/Login";
 import Register from "@/components/Register";
 import UserBoard from "@/components/UserBoard";
 import Admin from "@/components/Admin";
+import About from "@/pages/PageAbout";
+import NotFound from '@/pages/PageNotFound';
+
 
 Vue.use(Router);
 
@@ -48,6 +51,19 @@ let router = new Router({
         requiresAuth: true,
         is_admin: true
       }
+    },
+    {
+      path: "/about",
+      name: "about",
+      component: About,
+      meta: {
+        // vars here
+      }
+    },
+    {
+      path: '*',
+      name: 'NotFound',
+      component: NotFound
     }
   ]
 });

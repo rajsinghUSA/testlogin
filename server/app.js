@@ -66,7 +66,7 @@ router.post('/register-admin', function(req, res) {
 
 router.post('/login', (req, res) => {
     db.selectByEmail(req.body.email, (err, user) => {
-        // debugger;
+        debugger;
         // console.log(user);
         // console.log(req.body);
         if (err) return res.status(500).send('Error on the server.');

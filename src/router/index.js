@@ -7,9 +7,8 @@ import Register from "@/components/Register";
 import UserBoard from "@/components/UserBoard";
 import Admin from "@/components/Admin";
 import About from "@/pages/PageAbout";
-import NotFound from '@/pages/PageNotFound';
-import Stats from '@/components/Stats'
-
+import NotFound from "@/pages/PageNotFound";
+import Stats from "@/components/Stats";
 
 Vue.use(Router);
 
@@ -71,13 +70,13 @@ let router = new Router({
       }
     },
     {
-      path: '/stats',
-      name: 'stats',
-      component: Stats,
+      path: "/stats",
+      name: "stats",
+      component: Stats
     },
     {
-      path: '*',
-      name: 'NotFound',
+      path: "*",
+      name: "NotFound",
       component: NotFound
     }
   ]

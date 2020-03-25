@@ -52,5 +52,4 @@ div {
 .modal-card-body {
   padding: 10px;
 }
-
 </style>

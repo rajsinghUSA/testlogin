@@ -1,17 +1,34 @@
 <template>
-    <header>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/register">Register</router-link> |
-      <router-link to="/logout">Logout</router-link>
-    </header>
+  <header class="navbar-menu">
+    <router-link to="/" class="navbar-item">Home</router-link>
+    <router-link to="/about" class="navbar-item">About</router-link>
+    <!-- <router-link to="/login">Login</router-link> | -->
+    <router-link to="/register" class="navbar-item">Register</router-link>
+    <!-- <router-link to="/logout">Logout</router-link> -->
+    <!-- <a href="#" @click="onLogout">Logout</a> -->
+    <LoginDropdown />
+  </header>
 </template>
- 
+
 <script>
-    export default {
-        // name: "Header"
+import LoginDropdown from "@/components/LoginDropdown.vue";
+
+export default {
+  // name: "Header"
+  data() {
+    return {};
+  },
+  methods: {
+    onLogout: function(/*e*/) {
+      this.axios.get("/api/logout").then(() => {
+        this.$router.push("/");
+      });
     }
+  },
+  components: {
+    LoginDropdown
+  }
+};
 </script>
 
 <style scoped>

@@ -16,15 +16,15 @@
 </style>
 
 <script>
-import BaseHeader from "./components/BaseHeader.vue";
-import PageBase from "./pages/PageBase.vue";
+import BaseHeader from "./components/BaseHeader.vue"
+import PageBase from "./pages/PageBase.vue"
 
 export default {
-  name: 'app',
+  name: "app",
   data() {
     return {
       //something
-    };
+    }
   },
   components: {
     BaseHeader,

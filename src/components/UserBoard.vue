@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>Welcome to regular users page</h1>
+    <h1>Welcome {{ user.name }}</h1>
     <h2>{{ msg }}</h2>
   </div>
 </template>
@@ -9,8 +9,31 @@
 export default {
   data() {
     return {
-      msg: "The commoners"
+      user: {
+        name: "Jesse"
+      },
+      msg: "You are logged in with regular permissions"
     };
+  },
+
+  methods: {
+    getUserData: function() {
+      let self = this;
+      this.axios
+        .get("/api/user")
+        .then(response => {
+          console.log(response);
+          self.$set(this, "user", response.data.user);
+        })
+        .catch(errors => {
+          console.log(errors);
+          this.$router.push("/login");
+        });
+    }
+  },
+
+  mounted() {
+    this.getUserData();
   }
 };
 </script>

@@ -49,24 +49,29 @@ export default {
   props: ["nextUrl"],
   data() {
     return {
-      name: "",
-      email: "",
-      password: "",
-      password_confirmation: "",
+      // name: "",
+      // email: "",
+      // password: "",
+      // password_confirmation: "",
+      // is_admin: 0,
+      name: "Test",
+      email: "test@test.test",
+      password: "test",
+      password_confirmation: "test",
       is_admin: 0
     };
   },
   methods: {
     handleSubmit(e) {
       e.preventDefault();
-
       if (
         this.password === this.password_confirmation &&
         this.password.length > 0
       ) {
-        let url = "http://localhost:3000/register";
-        if (this.is_admin != null || this.is_admin == 1)
-          url = "http://localhost:3000/register-admin";
+        let url = `$(this.$store.state.api_url)/api/register`;
+        // if (this.is_admin == 1) {
+        //   url = `$(this.$store.state.api_url)/api/register-admin`;
+        // }
         this.axios
           .post(url, {
             name: this.name,

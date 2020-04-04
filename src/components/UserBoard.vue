@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -19,7 +21,7 @@ export default {
   methods: {
     getUserData: function() {
       let self = this;
-      this.axios
+      axios
         .get("/api/user")
         .then(response => {
           console.log(response);

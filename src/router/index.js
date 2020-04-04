@@ -8,7 +8,8 @@ import UserBoard from "@/components/UserBoard";
 import Admin from "@/components/Admin";
 import About from "@/pages/PageAbout";
 import NotFound from "@/pages/PageNotFound";
-import Stats from "@/components/Stats";
+import Create from "@/pages/PageCreate";
+import Stats from "@/pages/PageStats";
 
 Vue.use(Router);
 
@@ -68,6 +69,11 @@ let router = new Router({
       meta: {
         // vars here
       }
+    },
+    {
+      path: "/create",
+      name: "create",
+      component: Create
     },
     {
       path: "/stats",

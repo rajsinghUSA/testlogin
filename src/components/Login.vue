@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -39,12 +41,13 @@ export default {
         password: this.password,
         returnTo: window.location.pathname
       };
-      this.axios
+      axios
         .post("/api/login", data)
         .then(response => {
           console.log("Logged in");
           console.log(response);
           console.log(this);
+          debugger;
           // this.$router.push("/dashboard");
         })
         .catch(errors => {

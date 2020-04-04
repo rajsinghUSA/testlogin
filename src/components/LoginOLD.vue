@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -33,7 +35,7 @@ export default {
     handleSubmit(e) {
       e.preventDefault();
       if (this.password.length > 0) {
-        this.axios
+        axios
           .post("http://localhost:3000/login", {
             email: this.email,
             password: this.password

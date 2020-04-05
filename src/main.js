@@ -8,7 +8,7 @@ import "buefy/dist/buefy.css";
 import Acl from "vue-browser-acl";
 import { ACLRules } from "./utils/acl";
 
-Vue.use(Acl, store.state.acl.acl, ACLRules, {
+Vue.use(Acl, store.state.currentUser, ACLRules, {
   router,
   failRoute: { path: "/" /*, replace: true*/ }
 });

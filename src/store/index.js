@@ -22,7 +22,7 @@ export default new Vuex.Store({
       state.currentUser = user;
       window.localStorage.setItem("currentUser", JSON.stringify(user));
     },
-    LOGOUT_USER(state) {
+    SET_NO_CURRENT_USER(state) {
       state.currentUser = {};
       window.localStorage.setItem("currentUser", "{}");
     },
@@ -49,7 +49,7 @@ export default new Vuex.Store({
 
         console.log("currentUser: ", currentUser)
         commit("SET_CURRENT_USER", currentUser);
-
+        // window.location.reload();
         return response;
       } catch (error) {
         // const testerror = error
@@ -62,7 +62,8 @@ export default new Vuex.Store({
     async logout({ commit }) {
       const response = await axios.post("/api/logout");
       console.log(response);
-      commit("LOGOUT_USER");
+      commit("SET_NO_CURRENT_USER");
+      // window.location.reload();
     },
     async register({ commit }, registration_data) {
       try {
@@ -89,9 +90,17 @@ export default new Vuex.Store({
     // }
   },
   getters: {
+    // computed properties
+
     // exampleSpecificData(state) {
     //   return state.currentUser.filter(user_item => user_item.sex == "male")
     // }
+    isAuthenticated(state) {
+      return Object.keys(state.currentUser).length > 0;
+    },
+    currentUser(state) {
+      return Object.keys(state.currentUser).length > 0 ? state.currentUser : {};
+    }
   },
   modules: {
     acl

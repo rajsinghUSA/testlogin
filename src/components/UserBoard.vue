@@ -20,7 +20,7 @@ export default {
 
   methods: {
     getUserData: function() {
-      let self = this;
+      const self = this;
       axios
         .get("/api/user")
         .then(response => {

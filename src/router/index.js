@@ -1,8 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
+import store from "../store";
+
 //import HelloWorld from "@/components/HelloWorld";
 import Home from "@/pages/Home";
-import Login from "@/components/Login";
+import Login from "@/pages/PageLogin";
 import Register from "@/components/Register";
 import UserBoard from "@/components/UserBoard";
 import Admin from "@/components/Admin";
@@ -19,7 +21,10 @@ let router = new Router({
     {
       path: "/",
       name: "Home",
-      component: Home
+      component: Home,
+      meta: {
+        guest: true
+      }
     },
     {
       path: "/login",
@@ -29,14 +34,6 @@ let router = new Router({
         guest: true
       }
     },
-    // {
-    //   path: "/logout",
-    //   name: "logout",
-    //   component: Logout,
-    //   meta: {
-    //     guest: true
-    //   }
-    // },
     {
       path: "/register",
       name: "register",
@@ -59,7 +56,8 @@ let router = new Router({
       component: Admin,
       meta: {
         requiresAuth: true,
-        is_admin: true
+        is_admin: true,
+        role: "admin"
       }
     },
     {
@@ -67,7 +65,7 @@ let router = new Router({
       name: "about",
       component: About,
       meta: {
-        // vars here
+        guest: true
       }
     },
     {
@@ -78,14 +76,36 @@ let router = new Router({
     {
       path: "/stats",
       name: "stats",
-      component: Stats
+      component: Stats,
+      props: true,
+      meta: {
+        role: "authenticated"
+      }
     },
     {
       path: "*",
       name: "NotFound",
-      component: NotFound
+      component: NotFound,
+      meta: {
+        guest: true
+      }
     }
   ]
+});
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = store.getters.isAuthenticated;
+  const guestsAllowed = to.matched.some(record => record.meta.guest);
+  // const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+  if (guestsAllowed) next();
+  else if (!isAuthenticated) {
+  console.log(to.path)
+    next({ path: "login", query: { redirectTo: to.path } });}
+  else next();
+
+  // else if (requiresAuth && !isAuthenticated) next("login");
+  // else next();
 });
 
 // router.beforeEach((to, from, next) => {

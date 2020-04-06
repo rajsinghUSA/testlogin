@@ -6,12 +6,12 @@ import store from "./store";
 import Buefy from "buefy";
 import "buefy/dist/buefy.css";
 import Acl from "vue-browser-acl";
-// import { ACLRules } from "./utils/acl";
+import { ACLRules } from "./utils/acl";
 
-const user = { name: "Raj", role: "normal" };
-
-Vue.use(Acl, user, acl => {
-  acl.rule("normal", "pages", user => user.role == "normal");
+Vue.use(Acl, () => store.getters.currentUser, ACLRules, {
+  router,
+  failRoute: { path: "/" /*, replace: true*/ },
+  caseMode: false
 });
 
 Vue.use(Buefy, {

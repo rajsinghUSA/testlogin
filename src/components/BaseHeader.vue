@@ -10,21 +10,15 @@
       <!-- <router-link to="/logout">Logout</router-link> -->
       <!-- <a href="#" @click="onLogout">Logout</a> -->
       <!-- <UserDropdown /> -->
-      <div v-if="currentUser.email">
-        <UserDropdown />
-      </div>
-      <div v-else>
-        <LoginDropdown />
-      </div>
+      <BaseHeaderDropdown />
     </template>
   </b-navbar>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import LoginDropdown from "@/components/LoginDropdown.vue";
-import UserDropdown from "@/components/UserDropdown.vue";
 import axios from "axios";
+import BaseHeaderDropdown from "@/components/BaseHeaderDropdown.vue";
 
 export default {
   // name: "Header"
@@ -42,8 +36,7 @@ export default {
     ...mapState(["currentUser"])
   },
   components: {
-    LoginDropdown,
-    UserDropdown
+    BaseHeaderDropdown
   }
 };
 </script>

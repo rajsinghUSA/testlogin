@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="columns">
-      <BaseNavigationMenu v-if="currentUser.email" />
+      <BaseSideNavigationMenu v-role:authenticated />
       <PageContent />
     </div>
     <BaseFooter />
@@ -10,7 +10,7 @@
 
 <script>
 import { mapState } from "vuex";
-import BaseNavigationMenu from "@/components/BaseNavigationMenu";
+import BaseSideNavigationMenu from "@/components/BaseSideNavigationMenu";
 import BaseFooter from "@/components/BaseFooter";
 import PageContent from "@/pages/PageContent";
 
@@ -26,7 +26,7 @@ export default {
   },
 
   components: {
-    BaseNavigationMenu,
+    BaseSideNavigationMenu,
     PageContent,
     BaseFooter
   }

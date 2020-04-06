@@ -29,14 +29,15 @@ export default {
   data() {
     return {
       email: "a@a.a",
-      password: "bb"
+      password: "bb",
+      redirectTo: this.$route.params["redirectTo"]
     };
   },
 
   methods: {
     login: function(e) {
       e.preventDefault();
-      let data = {
+      const data = {
         email: this.email,
         password: this.password,
         returnTo: window.location.pathname
@@ -48,7 +49,7 @@ export default {
           console.log(response);
           console.log(this);
           debugger;
-          // this.$router.push("/dashboard");
+          this.$router.push(this.redirectTo);
         })
         .catch(errors => {
           console.log("Cannot log in");
